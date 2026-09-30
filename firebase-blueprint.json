@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "Impression": {
+      "title": "Impression",
+      "description": "사유원 숲체험 및 명상 후 방문객이 남긴 소감 기록",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 100 },
+        "content": { "type": "string", "maxLength": 5000 },
+        "spaceId": { "type": "string", "maxLength": 50 },
+        "spaceName": { "type": "string", "maxLength": 100 },
+        "authorName": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 30 },
+        "timeString": { "type": "string", "maxLength": 30 },
+        "weather": { "type": "string", "maxLength": 20 },
+        "walkDurationMinutes": { "type": "number" },
+        "meditationMinutes": { "type": "number" },
+        "emotionBefore": { "type": "string", "maxLength": 50 },
+        "emotionAfter": { "type": "string", "maxLength": 50 },
+        "mindTemperature": { "type": "number" },
+        "photoUrl": { "type": "string", "maxLength": 500000 },
+        "tags": { "type": "array" },
+        "isPublic": { "type": "boolean" },
+        "likesCount": { "type": "number" },
+        "comments": { "type": "array" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["title", "content", "spaceId", "spaceName", "authorName", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/sayuwon_impressions/{impressionId}": {
+      "schema": "Impression",
+      "description": "사유원 방문자들의 숲체험 및 명상 소감 문서 컬렉션"
+    }
+  }
+}

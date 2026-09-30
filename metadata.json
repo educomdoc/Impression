@@ -1,0 +1,6 @@
+{
+  "name": "사유원 숲체험 & 명상 소감록",
+  "description": "사유원 숲길 산책과 명상 후 마음에 머문 생각과 감정을 고요히 기록하고 나누는 모바일 소감록",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
