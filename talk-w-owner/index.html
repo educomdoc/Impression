@@ -83,12 +83,12 @@
       <header class="chalkboard-header">
         <div class="header-logo">
           <i data-lucide="radio" class="logo-icon animate-pulse"></i>
-          <h1 class="chalk-title"> 무엇이든 물어보CEO! </h1>
+          <h1 class="chalk-title"> 내일의 꿈과 사랑을 그리는 따뜻한 시간 </h1>
         </div>
         <div class="header-actions">
           <button id="btn-write-story" class="btn-chalk" aria-label="사연 작성하기">
             <i data-lucide="pen-tool"></i>
-            <span>질문, 궁금증 남기기</span>
+            <span>소감 작성하기</span>
           </button>
         </div>
       </header>
@@ -101,7 +101,7 @@
 <!-- [추가] 보이는 라디오 바로 하단 안내사항 버튼 -->
         <button id="btn-notice" class="btn-chalk btn-notice-chalk" aria-label="안내사항 보기">
           <i data-lucide="info"></i>
-          <span>안내사항</span>
+          <span> 안내글 </span>
         </button>
       
         <!-- Chalkboard Grid for Pinned Notes -->
@@ -164,16 +164,16 @@
         <form id="story-form">
           <div class="form-group">
             <label for="input-nickname">
-              <i data-lucide="user" class="input-icon"></i> 닉네임
+              <i data-lucide="user" class="input-icon"></i> 작성자
             </label>
-            <input type="text" id="input-nickname" placeholder="반짝이는 질문의 주인공" required maxlength="12">
+            <input type="text" id="input-nickname" placeholder="성함" required maxlength="12">
           </div>
 
           <div class="form-group">
             <label for="input-story">
-              <i data-lucide="book-open" class="input-icon"></i> 질문 내용
+              <i data-lucide="book-open" class="input-icon"></i> 소감 내용
             </label>
-            <textarea id="input-story" placeholder="입사 준비하면서 궁금했던 점이나 떠오르는 질문들을 남겨주세요." required maxlength="300"></textarea>
+            <textarea id="input-story" placeholder="사유원을 통하여 느낀 소감을 남겨주세요." required maxlength="300"></textarea>
           </div>
 
           <div class="paper-footer">
@@ -181,7 +181,7 @@
               <span class="stamp-post">POST</span>
             </div>
             <button type="submit" class="btn-send-paper" id="btn-submit-story">
-              <span>질문 남기기 </span>
+              <span>소감 작성하기 </span>
               <i data-lucide="send" class="send-icon"></i>
             </button>
           </div>
@@ -204,12 +204,12 @@
               <i data-lucide="user" class="header-icon"></i>
               <span id="detail-nickname" class="note-nickname">닉네임</span>
             </div>
-            <button id="btn-delete-story" class="btn-delete-note" title="이 사연 삭제하기">
+            <button id="btn-delete-story" class="btn-delete-note" title="이 소감 삭제하기">
               <i data-lucide="trash-2"></i>
             </button>
           </div>
           <div class="notebook-content">
-            <p id="detail-story" class="note-story-text">사연 내용이 들어갑니다.</p>
+            <p id="detail-story" class="note-story-text">소감 내용이 들어갑니다.</p>
           </div>
           <div class="detail-note-footer">
             <div class="detail-footer-inner">
@@ -251,7 +251,7 @@
       <div class="confirm-icon-holder">
         <i data-lucide="help-circle" class="confirm-icon"></i>
       </div>
-      <p class="confirm-message">사연을 정말 지우시겠습니까?</p>
+      <p class="confirm-message">소감을 정말 지우시겠습니까?</p>
       <div class="confirm-actions">
         <button id="btn-confirm-yes" class="btn-confirm yes">네</button>
         <button id="btn-confirm-no" class="btn-confirm no">아니오</button>
