@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Firebase & Firestore Configuration ---
   // ==========================================
   const firebaseConfig = {
-    apiKey: "AIzaSyB6iqSpkU3XTUI5QPwN1jWBkQefwmcSrug",
-  authDomain: "talk-w-owner.firebaseapp.com",
-  projectId: "talk-w-owner",
-  storageBucket: "talk-w-owner.firebasestorage.app",
-  messagingSenderId: "891896577562",
-  appId: "1:891896577562:web:0ee0cca7640e57edd15ba3"
+     apiKey: "AIzaSyAnYmEGQ_sQICQqpHitIKiaJCepxFFEYiA",
+  authDomain: "gyeongju-wine.firebaseapp.com",
+  projectId: "gyeongju-wine",
+  storageBucket: "gyeongju-wine.firebasestorage.app",
+  messagingSenderId: "499847762881",
+  appId: "1:499847762881:web:b42a1b8ce0331f6c16d540"
   };
 
   // Firebase 및 Firestore 초기화
