@@ -34,6 +34,28 @@
         </button>
       </div>
 
+       <!-- DJ Login Form Panel (Hidden initially) -->
+      <div class="dj-login-panel hidden" id="dj-login-panel">
+        <button id="btn-back-to-choices" class="btn-back-portal" aria-label="이전 단계로">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <h3> </h3>
+        <form id="dj-login-form">
+          <div class="login-group">
+            <label for="login-id">아이디 (ID)</label>
+            <input type="text" id="login-id" placeholder=" " required>
+          </div>
+          <div class="login-group">
+            <label for="login-pw">비밀번호 (Password)</label>
+            <input type="password" id="login-pw" placeholder=" " required>
+          </div>
+          <p class="login-error hidden" id="login-error-msg"> </p>
+          <button type="submit" class="btn-login-submit"> 운영자 로그인 </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
 
   <!-- Background SVG Noise Filter for Realistic Chalkboard Texture -->
   <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
