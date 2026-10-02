@@ -20,8 +20,6 @@ import {
   deleteImpression
 } from './utils/storage';
 import { CommunityWallView } from './components/CommunityWallView';
-import { MeditationTimer } from './components/MeditationTimer';
-import { SpaceExplorerView } from './components/SpaceExplorerView';
 import { MyJournalView } from './components/MyJournalView';
 import { ImpressionFormModal } from './components/ImpressionFormModal';
 import { ImpressionDetailModal } from './components/ImpressionDetailModal';
