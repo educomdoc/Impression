@@ -72,7 +72,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
         <div className="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-emerald-600/20 blur-2xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/15 text-[#e5f0e3] backdrop-blur-xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base font-medium bg-white/15 text-[#e5f0e3] backdrop-blur-xs">
             <Wind className="w-3.5 h-3.5 text-emerald-300" />
             <span>사유원 숲체험 &amp; 명상 소감록</span>
           </div>
@@ -81,14 +81,14 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
             숲에 머문 마음,<br />고요한 사유의 방명록
           </h2>
 
-          <p className="text-xs text-[#c6d7c4] font-serif-kr leading-relaxed">
+          <p className="text-base text-[#c6d7c4] font-serif-kr leading-relaxed">
             승효상, 알바로 시자의 건축과 300년 모과나무 숲길을 걸은 이들이 남긴 성찰과 온기의 기록입니다.
           </p>
 
           <div className="pt-2 flex items-center gap-2">
             <button
               onClick={onOpenWriteModal}
-              className="py-2.5 px-4 rounded-2xl bg-[#fdfbf7] text-[#242f22] text-xs font-bold hover:bg-white inline-flex items-center gap-1.5 shadow-sm transition-transform active:scale-95"
+              className="py-2.5 px-4 rounded-2xl bg-[#fdfbf7] text-[#242f22] text-base font-bold hover:bg-white inline-flex items-center gap-1.5 shadow-sm transition-transform active:scale-95"
             >
               <Plus className="w-4 h-4 text-[#3b4c38]" />
               <span>나도 소감 남기기</span>
@@ -109,12 +109,12 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
           placeholder="공간명, 키워드(#비움, #물소리), 소감 검색..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#fdfbf7] border border-[#e2d8c7] text-xs text-[#2e372a] placeholder:text-[#998f80] focus:outline-none focus:ring-2 focus:ring-[#3b4c38] shadow-2xs"
+          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-[#fdfbf7] border border-[#e2d8c7] text-base text-[#2e372a] placeholder:text-[#998f80] focus:outline-none focus:ring-2 focus:ring-[#3b4c38] shadow-2xs"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className="absolute right-3 top-2.5 text-xs text-[#8c8171] hover:text-[#332c22]"
+            className="absolute right-3 top-2.5 text-base text-[#8c8171] hover:text-[#332c22]"
           >
             초기화
           </button>
@@ -123,7 +123,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
 
       {/* Filter Row: Space chips & Sort */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between text-xs text-[#6e6353]">
+        <div className="flex items-center justify-between text-base text-[#6e6353]">
           <span className="font-semibold flex items-center gap-1">
             <Filter className="w-3.5 h-3.5 text-[#3b4c38]" />
             공간별 사유 모아보기
@@ -153,7 +153,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
         <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
           <button
             onClick={() => setSelectedSpaceFilter('all')}
-            className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+            className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-base font-medium transition-all ${
               selectedSpaceFilter === 'all'
                 ? 'bg-[#3b4c38] text-white shadow-xs'
                 : 'bg-[#eee7da] text-[#554a3d] hover:bg-[#e4dcce]'
@@ -167,7 +167,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
               <button
                 key={space.id}
                 onClick={() => setSelectedSpaceFilter(space.id)}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-base font-medium transition-all ${
                   isSelected
                     ? 'bg-[#3b4c38] text-white shadow-xs'
                     : 'bg-[#eee7da] text-[#554a3d] hover:bg-[#e4dcce]'
@@ -198,7 +198,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
             <h4 className="font-serif-kr font-bold text-sm text-[#3b342a]">
               일치하는 사유가 없습니다
             </h4>
-            <p className="text-xs text-[#716656] font-serif-kr">
+            <p className="text-base text-[#716656] font-serif-kr">
               다른 검색어나 공간 필터를 선택해보세요.
             </p>
           </div>
