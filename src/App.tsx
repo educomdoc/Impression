@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
   Sparkles,
-  Compass,
   Plus,
   Heart,
-  Wind,
   Layers,
   User,
   Home,
@@ -164,22 +162,7 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'meditation' && (
-          <MeditationTimer
-            onCompleteToJournal={(mins, spaceId) => {
-              handleOpenWriteModal(spaceId, mins);
-            }}
-          />
-        )}
-
-        {activeTab === 'spaces' && (
-          <SpaceExplorerView
-            onSelectSpaceForImpression={(spaceId) => handleOpenWriteModal(spaceId)}
-            onSelectSpaceForMeditation={(spaceId) => {
-              setActiveTab('meditation');
-            }}
-          />
-        )}
+     
 
         {activeTab === 'journal' && (
           <MyJournalView
@@ -207,17 +190,6 @@ export default function App() {
             <span className="text-[18px]">사유 방명록</span>
           </button>
 
-          {/* Tab 2: Meditation */}
-          <button
-            onClick={() => setActiveTab('meditation')}
-            className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all ${
-              activeTab === 'meditation' ? 'text-[#3b4c38] font-bold' : 'text-[#7e7362] hover:text-[#332c22]'
-            }`}
-          >
-            <Wind className="w-5 h-5" />
-            <span className="text-[18px]">숲 명상</span>
-          </button>
-
           {/* Central Action: Write Impression Floating Button */}
           <button
             onClick={() => handleOpenWriteModal()}
@@ -227,17 +199,6 @@ export default function App() {
               <Plus className="w-6 h-6" />
             </div>
             <span className="text-[18px] font-bold text-[#3b4c38] mt-0.5">소감 쓰기</span>
-          </button>
-
-          {/* Tab 4: Spaces */}
-          <button
-            onClick={() => setActiveTab('spaces')}
-            className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all ${
-              activeTab === 'spaces' ? 'text-[#3b4c38] font-bold' : 'text-[#7e7362] hover:text-[#332c22]'
-            }`}
-          >
-            <Compass className="w-5 h-5" />
-            <span className="text-[18px]">공간 탐색</span>
           </button>
 
           {/* Tab 5: My Drawer */}
