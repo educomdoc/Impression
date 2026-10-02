@@ -199,7 +199,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
         {/* Breathing Guide Text */}
         <div className="mt-4 text-center px-4">
-          <p className="text-sm font-medium text-[#3b4c38] font-serif-kr min-h-[35px] transition-all">
+          <p className="text-sm font-medium text-[#3b4c38] font-serif-kr min-h-[33px] transition-all">
             {breathText}
           </p>
         </div>
