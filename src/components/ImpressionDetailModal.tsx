@@ -117,7 +117,7 @@ export const ImpressionDetailModal: React.FC<ImpressionDetailModalProps> = ({
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs">
                 <span className="font-serif-kr drop-shadow-sm">사유원 사유의 숲</span>
-                <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-xs text-[11px]">
+                <span className="px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-xs text-[20px]">
                   온기 {impression.mindTemperature.toFixed(1)}°C
                 </span>
               </div>
@@ -142,12 +142,12 @@ export const ImpressionDetailModal: React.FC<ImpressionDetailModalProps> = ({
           {/* Mind Journey Block */}
           <div className="p-4 rounded-2xl bg-[#f2ecdf]/80 border border-[#e2d8c7] flex items-center justify-between">
             <div className="flex-1 text-center pr-2">
-              <span className="block text-[11px] text-[#7d7161] font-medium mb-0.5">숲에 오기 전</span>
+              <span className="block text-[20px] text-[#7d7161] font-medium mb-0.5">숲에 오기 전</span>
               <span className="font-bold text-xs text-[#4b4134]">{impression.emotionBefore}</span>
             </div>
             <ArrowRight className="w-4 h-4 text-[#3b4c38] flex-shrink-0" />
             <div className="flex-1 text-center pl-2">
-              <span className="block text-[11px] text-[#3b4c38] font-medium mb-0.5">명상과 산책 후</span>
+              <span className="block text-[20px] text-[#3b4c38] font-medium mb-0.5">명상과 산책 후</span>
               <span className="font-bold text-xs text-[#283726]">{impression.emotionAfter}</span>
             </div>
             <div className="pl-3 border-l border-[#ded5c5] flex flex-col items-center">
@@ -155,7 +155,7 @@ export const ImpressionDetailModal: React.FC<ImpressionDetailModalProps> = ({
                 <Flame className="w-3.5 h-3.5" />
                 {impression.mindTemperature.toFixed(1)}°C
               </span>
-              <span className="text-[10px] text-[#867a6a]">마음의 온기</span>
+              <span className="text-[20px] text-[#867a6a]">마음의 온기</span>
             </div>
           </div>
 
@@ -186,7 +186,7 @@ export const ImpressionDetailModal: React.FC<ImpressionDetailModalProps> = ({
               <div className="font-serif-kr font-bold text-xs text-[#31291f]">
                 이 소감을 사유 엽서로 소장해보세요
               </div>
-              <div className="text-[11px] text-[#6d6353]">
+              <div className="text-[20px] text-[#6d6353]">
                 사유원의 전통 낙관이 찍힌 엽서 이미지로 저장됩니다.
               </div>
             </div>
@@ -268,7 +268,7 @@ export const ImpressionDetailModal: React.FC<ImpressionDetailModalProps> = ({
                   >
                     <div className="flex items-center justify-between text-[#7d7161]">
                       <span className="font-serif-kr font-bold text-[#353e32]">{c.author}</span>
-                      <span className="text-[10px]">{c.createdAt}</span>
+                      <span className="text-[20px]">{c.createdAt}</span>
                     </div>
                     <p className="text-[#453f36] font-serif-kr leading-relaxed">{c.text}</p>
                   </div>
