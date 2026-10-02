@@ -99,7 +99,7 @@ export const PostcardPreviewModal: React.FC<PostcardPreviewModalProps> = ({
         {/* Postcard Body Preview */}
         <div className="p-4 flex flex-col items-center justify-center max-h-[70vh] overflow-y-auto">
           {isGenerating ? (
-            <div className="py-20 flex flex-col items-center gap-3 text-xs text-[#786c5c] font-serif-kr">
+            <div className="py-20 flex flex-col items-center gap-3 text-base text-[#786c5c] font-serif-kr">
               <div className="w-8 h-8 rounded-full border-2 border-[#3b4c38] border-t-transparent animate-spin" />
               <span>정갈한 엽서를 빚는 중입니다...</span>
             </div>
@@ -112,7 +112,7 @@ export const PostcardPreviewModal: React.FC<PostcardPreviewModalProps> = ({
               />
             </div>
           ) : (
-            <div className="py-12 text-xs text-rose-700">엽서 생성에 실패했습니다.</div>
+            <div className="py-12 text-base text-rose-700">엽서 생성에 실패했습니다.</div>
           )}
         </div>
 
@@ -121,7 +121,7 @@ export const PostcardPreviewModal: React.FC<PostcardPreviewModalProps> = ({
           <button
             onClick={handleDownload}
             disabled={!dataUrl}
-            className="flex-1 py-2.5 px-3 rounded-xl bg-[#3b4c38] text-white text-xs font-semibold hover:bg-[#2f3f2d] flex items-center justify-center gap-1.5 shadow-xs transition-all disabled:opacity-50"
+            className="flex-1 py-2.5 px-3 rounded-xl bg-[#3b4c38] text-white text-base font-semibold hover:bg-[#2f3f2d] flex items-center justify-center gap-1.5 shadow-xs transition-all disabled:opacity-50"
           >
             <Download className="w-4 h-4" />
             <span>이미지 저장</span>
@@ -129,7 +129,7 @@ export const PostcardPreviewModal: React.FC<PostcardPreviewModalProps> = ({
 
           <button
             onClick={handleShare}
-            className="py-2.5 px-3.5 rounded-xl bg-[#eee7da] text-[#4d4234] text-xs font-semibold hover:bg-[#e2dacb] flex items-center justify-center gap-1.5 transition-all"
+            className="py-2.5 px-3.5 rounded-xl bg-[#eee7da] text-[#4d4234] text-base font-semibold hover:bg-[#e2dacb] flex items-center justify-center gap-1.5 transition-all"
           >
             {isCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4" />}
             <span>{isCopied ? '복사됨' : '공유'}</span>
