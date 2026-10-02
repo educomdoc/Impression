@@ -163,7 +163,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="grid grid-cols-3 px-4 pt-3 pb-2 gap-2 border-b border-[#ece4d6] text-center text-xs">
+        <div className="grid grid-cols-3 px-4 pt-3 pb-2 gap-2 border-b border-[#ece4d6] text-center text-base">
           <button
             onClick={() => setActiveStep(1)}
             className={`py-1.5 rounded-xl transition-all font-medium ${
@@ -197,7 +197,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
         </div>
 
         {errorMessage && (
-          <div className="mx-4 mt-3 px-3 py-2 rounded-xl bg-rose-50 text-rose-800 text-xs border border-rose-200">
+          <div className="mx-4 mt-3 px-3 py-2 rounded-xl bg-rose-50 text-rose-800 text-base border border-rose-200">
             {errorMessage}
           </div>
         )}
@@ -209,7 +209,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
             <div className="space-y-4 animate-in fade-in duration-200">
               {/* Space Selection */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-2 flex items-center gap-1.5">
+                <label className="block text-base font-semibold text-[#41392e] mb-2 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#3b4c38]" />
                   머무른 사유원의 공간
                 </label>
@@ -253,7 +253,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
               {/* Weather selection */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-2">
+                <label className="block text-base font-semibold text-[#41392e] mb-2">
                   숲의 날씨
                 </label>
                 <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
@@ -262,7 +262,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                       type="button"
                       key={opt.type}
                       onClick={() => setWeather(opt.type)}
-                      className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 border transition-all ${
+                      className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-base flex items-center gap-1.5 border transition-all ${
                         weather === opt.type
                           ? 'bg-[#ede5d6] text-[#2c3529] border-[#b0a28f] font-semibold shadow-xs'
                           : 'bg-white/60 text-[#6d6353] border-[#e4dcce] hover:bg-white'
@@ -290,9 +290,9 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                       step="10"
                       value={walkDuration}
                       onChange={(e) => setWalkDuration(Number(e.target.value))}
-                      className="w-16 px-2 py-1.5 rounded-lg bg-white border border-[#ded5c5] text-xs font-bold text-center text-[#2b3529]"
+                      className="w-16 px-2 py-1.5 rounded-lg bg-white border border-[#ded5c5] text-base font-bold text-center text-[#2b3529]"
                     />
-                    <span className="text-xs text-[#63594a]">분 산책</span>
+                    <span className="text-base text-[#63594a]">분 산책</span>
                   </div>
                 </div>
 
@@ -309,9 +309,9 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                       step="5"
                       value={meditationMinutes}
                       onChange={(e) => setMeditationMinutes(Number(e.target.value))}
-                      className="w-16 px-2 py-1.5 rounded-lg bg-white border border-[#ded5c5] text-xs font-bold text-center text-[#2b3529]"
+                      className="w-16 px-2 py-1.5 rounded-lg bg-white border border-[#ded5c5] text-base font-bold text-center text-[#2b3529]"
                     />
-                    <span className="text-xs text-[#63594a]">분 머묾</span>
+                    <span className="text-base text-[#63594a]">분 머묾</span>
                   </div>
                 </div>
               </div>
@@ -320,7 +320,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setActiveStep(2)}
-                  className="w-full py-3 rounded-2xl bg-[#3b4c38] text-white text-xs font-medium flex items-center justify-center gap-1.5 shadow-sm hover:bg-[#32412f]"
+                  className="w-full py-3 rounded-2xl bg-[#3b4c38] text-white text-base font-medium flex items-center justify-center gap-1.5 shadow-sm hover:bg-[#32412f]"
                 >
                   <span>다음: 마음과 소감 적기</span>
                   <ChevronRight className="w-4 h-4" />
@@ -335,7 +335,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
               {/* Emotion Shift Section */}
               <div className="p-3.5 rounded-2xl bg-[#f2ecdf]/70 border border-[#e2d8c7] space-y-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#483f33] mb-1.5">
+                  <label className="block text-base font-semibold text-[#483f33] mb-1.5">
                     숲에 오기 전 내 마음 (Before)
                   </label>
                   <div className="flex flex-wrap gap-1.5">
@@ -344,7 +344,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                         type="button"
                         key={emo.id}
                         onClick={() => setEmotionBefore(emo.label)}
-                        className={`px-2.5 py-1 rounded-lg text-xs transition-all ${
+                        className={`px-2.5 py-1 rounded-lg text-base transition-all ${
                           emotionBefore === emo.label
                             ? 'bg-[#554b3e] text-white font-medium ring-2 ring-[#776957]'
                             : 'bg-white/80 text-[#5c5243] hover:bg-white border border-[#ded5c5]'
@@ -357,7 +357,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                 </div>
 
                 <div className="border-t border-[#ded5c5] pt-2.5">
-                  <label className="block text-xs font-semibold text-[#30412e] mb-1.5">
+                  <label className="block text-base font-semibold text-[#30412e] mb-1.5">
                     숲을 걷고 명상한 후 (After)
                   </label>
                   <div className="flex flex-wrap gap-1.5">
@@ -366,7 +366,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                         type="button"
                         key={emo.id}
                         onClick={() => setEmotionAfter(emo.label)}
-                        className={`px-2.5 py-1 rounded-lg text-xs transition-all ${
+                        className={`px-2.5 py-1 rounded-lg text-base transition-all ${
                           emotionAfter === emo.label
                             ? 'bg-[#3b4c38] text-white font-medium ring-2 ring-[#273425]'
                             : 'bg-white/80 text-[#3b4c38] hover:bg-white border border-[#ded5c5]'
@@ -380,7 +380,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
                 {/* Mind Temperature Slider */}
                 <div className="border-t border-[#ded5c5] pt-2.5">
-                  <div className="flex items-center justify-between text-xs mb-1">
+                  <div className="flex items-center justify-between text-base mb-1">
                     <span className="font-semibold text-[#4b4033] flex items-center gap-1">
                       <Flame className="w-3.5 h-3.5 text-[#b34729]" />
                       마음의 온도 (따스한 온기)
@@ -406,7 +406,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
               {/* Title Input */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-1.5">
+                <label className="block text-base font-semibold text-[#41392e] mb-1.5">
                   오늘 숲이 건넨 한마디 (소감 제목) *
                 </label>
                 <input
@@ -446,7 +446,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
               {/* Content Textarea */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-1.5">
+                <label className="block text-base font-semibold text-[#41392e] mb-1.5">
                   깊은 소감과 머문 사유 (본문) *
                 </label>
                 <textarea
@@ -463,7 +463,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
               {/* Tags Input */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-1.5 flex items-center gap-1">
+                <label className="block text-base font-semibold text-[#41392e] mb-1.5 flex items-center gap-1">
                   <Tag className="w-3.5 h-3.5 text-[#3b4c38]" />
                   키워드 태그 (쉼표로 구분)
                 </label>
@@ -472,7 +472,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                   placeholder="명정, 승효상, 물소리, 비움, 치유"
                   value={tagsInput}
                   onChange={(e) => setTagsInput(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-white border border-[#ded5c5] text-xs text-[#2a3327]"
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-[#ded5c5] text-base text-[#2a3327]"
                 />
               </div>
 
@@ -480,14 +480,14 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setActiveStep(1)}
-                  className="flex-1 py-3 rounded-2xl bg-[#eee7db] text-[#53493e] text-xs font-medium hover:bg-[#e3d9cc]"
+                  className="flex-1 py-3 rounded-2xl bg-[#eee7db] text-[#53493e] text-base font-medium hover:bg-[#e3d9cc]"
                 >
                   이전
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveStep(3)}
-                  className="flex-2 py-3 rounded-2xl bg-[#3b4c38] text-white text-xs font-medium flex items-center justify-center gap-1.5 shadow-sm hover:bg-[#32412f]"
+                  className="flex-2 py-3 rounded-2xl bg-[#3b4c38] text-white text-base font-medium flex items-center justify-center gap-1.5 shadow-sm hover:bg-[#32412f]"
                 >
                   <span>다음: 사진과 서명</span>
                   <ChevronRight className="w-4 h-4" />
@@ -501,7 +501,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
             <div className="space-y-4 animate-in fade-in duration-200">
               {/* Photo preview & stamps */}
               <div>
-                <label className="block text-xs font-semibold text-[#41392e] mb-2 flex items-center justify-between">
+                <label className="block text-base font-semibold text-[#41392e] mb-2 flex items-center justify-between">
                   <span className="flex items-center gap-1">
                     <Camera className="w-3.5 h-3.5 text-[#3b4c38]" />
                     사유의 사진 / 숲 엽서 선택
@@ -517,7 +517,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-3">
-                    <span className="text-white text-xs font-serif-kr">
+                    <span className="text-white text-base font-serif-kr">
                       {currentSpace.name} - {currentSpace.quote}
                     </span>
                   </div>
@@ -525,7 +525,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
 
                 {/* Custom File Upload Button */}
                 <div className="flex items-center gap-2 mb-3">
-                  <label className="cursor-pointer flex-1 py-2 px-3 rounded-xl bg-white border border-[#ded5c5] text-xs font-medium text-[#463d32] hover:bg-[#faf7f2] flex items-center justify-center gap-1.5 shadow-2xs">
+                  <label className="cursor-pointer flex-1 py-2 px-3 rounded-xl bg-white border border-[#ded5c5] text-base font-medium text-[#463d32] hover:bg-[#faf7f2] flex items-center justify-center gap-1.5 shadow-2xs">
                     <Upload className="w-3.5 h-3.5 text-[#3b4c38]" />
                     <span>내 폰에서 사진 올리기</span>
                     <input
@@ -576,7 +576,7 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
               {/* Author Signature & Nickname */}
               <div className="p-3.5 rounded-2xl bg-[#f2ecdf]/70 border border-[#e2d8c7] space-y-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#483e32] mb-1">
+                  <label className="block text-base font-semibold text-[#483e32] mb-1">
                     사유자 서명 (닉네임)
                   </label>
                   <input
@@ -585,14 +585,14 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                     onChange={(e) => setAuthorName(e.target.value)}
                     placeholder="예: 솔바람 님, 숲의 벗, 침묵의 여행자"
                     maxLength={20}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-[#ded5c5] text-xs font-medium text-[#2d362a]"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-[#ded5c5] text-base font-medium text-[#2d362a]"
                   />
                 </div>
 
                 {/* Public vs Private */}
                 <div className="flex items-center justify-between pt-1">
                   <div>
-                    <div className="text-xs font-semibold text-[#322c23]">
+                    <div className="text-base font-semibold text-[#322c23]">
                       사유의 숲 방명록에 함께 나누기
                     </div>
                     <div className="text-[20px] text-[#736858]">
@@ -620,13 +620,13 @@ export const ImpressionFormModal: React.FC<ImpressionFormModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setActiveStep(2)}
-                  className="flex-1 py-3 rounded-2xl bg-[#eee7db] text-[#53493e] text-xs font-medium hover:bg-[#e3d9cc]"
+                  className="flex-1 py-3 rounded-2xl bg-[#eee7db] text-[#53493e] text-base font-medium hover:bg-[#e3d9cc]"
                 >
                   이전
                 </button>
                 <button
                   type="submit"
-                  className="flex-2 py-3 rounded-2xl bg-[#3b4c38] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md hover:bg-[#303f2e] transition-all"
+                  className="flex-2 py-3 rounded-2xl bg-[#3b4c38] text-white text-base font-bold flex items-center justify-center gap-1.5 shadow-md hover:bg-[#303f2e] transition-all"
                 >
                   <Sparkles className="w-4 h-4 text-emerald-300" />
                   <span>소감록에 남기기</span>
