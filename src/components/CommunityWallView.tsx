@@ -94,7 +94,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
               <span>나도 소감 남기기</span>
             </button>
 
-            <span className="text-[11px] text-[#b8cdb6] pl-2 font-serif-kr">
+            <span className="text-[20px] text-[#b8cdb6] pl-2 font-serif-kr">
               총 {impressions.length}개의 사유
             </span>
           </div>
@@ -129,7 +129,7 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
             공간별 사유 모아보기
           </span>
           {/* Sort toggle */}
-          <div className="flex rounded-lg bg-[#eee7db] p-0.5 text-[11px]">
+          <div className="flex rounded-lg bg-[#eee7db] p-0.5 text-[20px]">
             <button
               onClick={() => setSortBy('latest')}
               className={`px-2 py-0.5 rounded-md transition-all ${
