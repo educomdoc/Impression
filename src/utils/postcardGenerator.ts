@@ -65,12 +65,12 @@ export async function generatePostcardImage(impression: Impression): Promise<str
 
   // Top Title Bar
   ctx.fillStyle = '#4a5345';
-  ctx.font = '600 28px "Noto Sans KR", sans-serif';
+  ctx.font = '600 35px "Noto Sans KR", sans-serif';
   ctx.textAlign = 'left';
   ctx.fillText('사유원 숲체험 & 명상 소감록', 100, 110);
 
   ctx.fillStyle = '#837869';
-  ctx.font = '400 24px "Noto Sans KR", sans-serif';
+  ctx.font = '400 32px "Noto Sans KR", sans-serif';
   ctx.fillText(`${impression.date} | ${impression.spaceName}`, 100, 150);
 
   // Separator Line
@@ -149,14 +149,14 @@ export async function generatePostcardImage(impression: Impression): Promise<str
   ctx.fill();
 
   ctx.fillStyle = '#554a3e';
-  ctx.font = '500 24px "Noto Sans KR", sans-serif';
+  ctx.font = '500 32px "Noto Sans KR", sans-serif';
   ctx.fillText(emotionText, 124, nextY);
 
   nextY += 60;
 
   // Impression Body Content (Serif, line spaced)
   ctx.fillStyle = '#363c33';
-  ctx.font = '400 32px "Gowun Batang", "Noto Serif KR", serif';
+  ctx.font = '400 40px "Gowun Batang", "Noto Serif KR", serif';
   const contentLines = wrapText(ctx, impression.content, 1000);
   const maxLines = 8;
   const renderedLines = contentLines.slice(0, maxLines);
@@ -183,13 +183,13 @@ export async function generatePostcardImage(impression: Impression): Promise<str
   // Tags
   if (impression.tags && impression.tags.length > 0) {
     ctx.fillStyle = '#6e7a68';
-    ctx.font = '500 24px "Noto Sans KR", sans-serif';
+    ctx.font = '500 32px "Noto Sans KR", sans-serif';
     ctx.fillText(impression.tags.map(t => `#${t}`).join('   '), 100, footerY);
   }
 
   // Author Sign
   ctx.fillStyle = '#222920';
-  ctx.font = '600 28px "Gowun Batang", "Noto Serif KR", serif';
+  ctx.font = '600 35px "Gowun Batang", "Noto Serif KR", serif';
   ctx.textAlign = 'right';
   ctx.fillText(`사유자  ${impression.authorName}  남김`, 1100, footerY);
 
