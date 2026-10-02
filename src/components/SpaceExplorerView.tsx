@@ -45,7 +45,7 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
               <div className="absolute bottom-3 left-4 right-4 text-white">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold font-serif-kr">{space.name}</h3>
-                  <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/25 backdrop-blur-xs font-sans-kr">
+                  <span className="text-[20px] px-2 py-0.5 rounded-full bg-white/25 backdrop-blur-xs font-sans-kr">
                     {space.tag}
                   </span>
                 </div>
@@ -67,7 +67,7 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
               </div>
 
               {/* Meditation Tip */}
-              <div className="flex items-start gap-2 text-[11px] text-[#635747] bg-[#fbf8f2] p-2.5 rounded-xl border border-[#ece4d6]">
+              <div className="flex items-start gap-2 text-[20px] text-[#635747] bg-[#fbf8f2] p-2.5 rounded-xl border border-[#ece4d6]">
                 <Sparkles className="w-3.5 h-3.5 text-[#8a5b35] flex-shrink-0 mt-0.5" />
                 <span>
                   <strong>사유 팁:</strong> {space.meditationTip}
