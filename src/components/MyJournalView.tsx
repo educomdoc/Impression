@@ -67,7 +67,7 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
       <div className="p-4 rounded-3xl bg-gradient-to-br from-[#3b4c38] to-[#253223] text-white shadow-md space-y-3">
         <div className="flex items-center justify-between pb-2 border-b border-white/15">
           <span className="text-xs font-serif-kr text-[#c8d8c6]">나의 숲 명상 누적 기록</span>
-          <span className="text-[11px] px-2 py-0.5 rounded-full bg-white/15 text-[#e5f0e3]">
+          <span className="text-[20px] px-2 py-0.5 rounded-full bg-white/15 text-[#e5f0e3]">
             {myImpressions.length}편의 사유
           </span>
         </div>
@@ -75,18 +75,18 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
         <div className="grid grid-cols-3 gap-2 text-center pt-1">
           <div>
             <div className="text-xl font-bold font-mono text-[#e4f1e2]">{totalMeditationMinutes}분</div>
-            <div className="text-[10px] text-[#a9bca7] mt-0.5">명상 사색 시간</div>
+            <div className="text-[18px] text-[#a9bca7] mt-0.5">명상 사색 시간</div>
           </div>
           <div>
             <div className="text-xl font-bold font-mono text-[#e4f1e2]">{totalWalkMinutes}분</div>
-            <div className="text-[10px] text-[#a9bca7] mt-0.5">숲길 산책 시간</div>
+            <div className="text-[18px] text-[#a9bca7] mt-0.5">숲길 산책 시간</div>
           </div>
           <div>
             <div className="text-xl font-bold font-mono text-[#fcd9cf] flex items-center justify-center gap-0.5">
               <Flame className="w-3.5 h-3.5 text-rose-400" />
               {averageTemp}°C
             </div>
-            <div className="text-[10px] text-[#a9bca7] mt-0.5">평균 마음 온도</div>
+            <div className="text-[18px] text-[#a9bca7] mt-0.5">평균 마음 온도</div>
           </div>
         </div>
       </div>
