@@ -57,14 +57,14 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
             <span className="font-serif-kr font-semibold text-[#3b4c38] px-2.5 py-0.5 rounded-full bg-[#e8efe6] border border-[#d2e2d0]">
               {impression.spaceName}
             </span>
-            <span className="flex items-center gap-1 text-[#786d5e] text-[11px]">
+            <span className="flex items-center gap-1 text-[#786d5e] text-[20px]">
               {getWeatherIcon(impression.weather)}
               <span>{impression.date}</span>
             </span>
           </div>
 
           {/* Mind Temperature Badge */}
-          <div className="flex items-center gap-1 text-[11px] font-bold text-[#b54629] px-2 py-0.5 rounded-full bg-[#faede8]">
+          <div className="flex items-center gap-1 text-[20px] font-bold text-[#b54629] px-2 py-0.5 rounded-full bg-[#faede8]">
             <Flame className="w-3 h-3" />
             <span>{impression.mindTemperature.toFixed(1)}°C</span>
           </div>
@@ -80,7 +80,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[11px] text-white/90">
+            <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[20px] text-white/90">
               <span className="font-serif-kr truncate drop-shadow-xs">
                 산책 {impression.walkDurationMinutes}분 · 명상 {impression.meditationMinutes}분
               </span>
@@ -114,7 +114,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
             {impression.tags.slice(0, 3).map((tag, i) => (
               <span
                 key={i}
-                className="text-[10px] text-[#6d7967] bg-[#edf2eb] px-2 py-0.5 rounded-md"
+                className="text-[18px] text-[#6d7967] bg-[#edf2eb] px-2 py-0.5 rounded-md"
               >
                 #{tag}
               </span>
@@ -138,7 +138,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
             </button>
 
             {/* Comments Counter */}
-            <span className="flex items-center gap-1 px-1.5 py-1 text-[11px] text-[#786c5c]">
+            <span className="flex items-center gap-1 px-1.5 py-1 text-[20px] text-[#786c5c]">
               <MessageCircle className="w-3.5 h-3.5" />
               <span>{impression.comments?.length || 0}</span>
             </span>
@@ -146,7 +146,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
             {/* Like / Resonance button */}
             <button
               onClick={(e) => onToggleLike(impression.id, e)}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[20px] font-semibold transition-all ${
                 impression.isLikedByMe
                   ? 'bg-rose-100 text-rose-700 ring-1 ring-rose-300'
                   : 'bg-[#ede5d6] text-[#554b3d] hover:bg-[#e4dcce]'
