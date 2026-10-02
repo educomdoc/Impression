@@ -52,7 +52,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
     >
       {/* Top Meta Header */}
       <div>
-        <div className="flex items-center justify-between text-xs mb-2.5">
+        <div className="flex items-center justify-between text-base mb-2.5">
           <div className="flex items-center gap-1.5">
             <span className="font-serif-kr font-semibold text-[#3b4c38] px-2.5 py-0.5 rounded-full bg-[#e8efe6] border border-[#d2e2d0]">
               {impression.spaceName}
@@ -89,7 +89,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
         )}
 
         {/* Emotion Shift Banner */}
-        <div className="flex items-center gap-1.5 text-xs text-[#52483a] bg-[#f2ecdf] px-3 py-1.5 rounded-xl mb-3">
+        <div className="flex items-center gap-1.5 text-base text-[#52483a] bg-[#f2ecdf] px-3 py-1.5 rounded-xl mb-3">
           <span className="font-medium text-[#736858] truncate">{impression.emotionBefore}</span>
           <ArrowRight className="w-3 h-3 text-[#3b4c38] flex-shrink-0" />
           <span className="font-bold text-[#2d3a2b] truncate">{impression.emotionAfter}</span>
@@ -101,7 +101,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
         </h3>
 
         {/* Excerpt */}
-        <p className="font-serif-kr text-xs text-[#544d41] leading-relaxed line-clamp-3 mb-3">
+        <p className="font-serif-kr text-base text-[#544d41] leading-relaxed line-clamp-3 mb-3">
           {impression.content}
         </p>
       </div>
@@ -122,7 +122,7 @@ export const ImpressionCard: React.FC<ImpressionCardProps> = ({
           </div>
         )}
 
-        <div className="flex items-center justify-between text-xs text-[#716757]">
+        <div className="flex items-center justify-between text-base text-[#716757]">
           <span className="font-serif-kr font-medium text-[#3b342a]">
             {impression.authorName}
           </span>
