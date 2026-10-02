@@ -53,12 +53,12 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
     <div className="max-w-md mx-auto px-4 py-4 pb-24 space-y-6">
       {/* Header */}
       <div className="text-center">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
           <BookOpen className="w-3.5 h-3.5 text-[#3b4c38]" />
           나의 사유 서랍
         </span>
         <h2 className="text-2xl font-bold font-serif-kr text-[#283226]">머물렀던 숲의 흔적</h2>
-        <p className="text-xs text-[#6e6456] mt-1 font-serif-kr">
+        <p className="text-base text-[#6e6456] mt-1 font-serif-kr">
           사유원에서 비워내고 채워 넣은 나만의 고요한 기록들입니다.
         </p>
       </div>
@@ -66,7 +66,7 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
       {/* Stats Summary Card */}
       <div className="p-4 rounded-3xl bg-gradient-to-br from-[#3b4c38] to-[#253223] text-white shadow-md space-y-3">
         <div className="flex items-center justify-between pb-2 border-b border-white/15">
-          <span className="text-xs font-serif-kr text-[#c8d8c6]">나의 숲 명상 누적 기록</span>
+          <span className="text-base font-serif-kr text-[#c8d8c6]">나의 숲 명상 누적 기록</span>
           <span className="text-[20px] px-2 py-0.5 rounded-full bg-white/15 text-[#e5f0e3]">
             {myImpressions.length}편의 사유
           </span>
@@ -99,7 +99,7 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
           </h3>
           <button
             onClick={onOpenWriteModal}
-            className="flex items-center gap-1 text-xs text-[#3b4c38] font-bold hover:underline"
+            className="flex items-center gap-1 text-base text-[#3b4c38] font-bold hover:underline"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>새 소감 쓰기</span>
@@ -140,12 +140,12 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
             <h4 className="font-serif-kr font-bold text-base text-[#343d32]">
               아직 남겨진 소감이 없습니다
             </h4>
-            <p className="text-xs text-[#6e6456] font-serif-kr max-w-xs mx-auto leading-relaxed">
+            <p className="text-base text-[#6e6456] font-serif-kr max-w-xs mx-auto leading-relaxed">
               사유원 숲길을 걷거나 명상을 마친 후, 마음에 피어난 감정과 생각을 기록해보세요.
             </p>
             <button
               onClick={onOpenWriteModal}
-              className="py-2.5 px-5 rounded-2xl bg-[#3b4c38] text-white text-xs font-semibold hover:bg-[#303f2e] inline-flex items-center gap-1.5 shadow-xs transition-all"
+              className="py-2.5 px-5 rounded-2xl bg-[#3b4c38] text-white text-base font-semibold hover:bg-[#303f2e] inline-flex items-center gap-1.5 shadow-xs transition-all"
             >
               <Plus className="w-4 h-4" />
               <span>첫 소감 남기기</span>
@@ -166,7 +166,7 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
               <h4 className="font-serif-kr font-bold text-base text-[#2c3328]">
                 소감 기록 삭제
               </h4>
-              <p className="text-xs text-[#665a4c] font-serif-kr mt-1.5 leading-relaxed px-2">
+              <p className="text-base text-[#665a4c] font-serif-kr mt-1.5 leading-relaxed px-2">
                 &ldquo;<span className="font-semibold text-[#2b3329]">{recordToDelete.title}</span>&rdquo;<br />
                 기록을 나의 서랍에서 삭제하시겠습니까?
               </p>
@@ -176,14 +176,14 @@ export const MyJournalView: React.FC<MyJournalViewProps> = ({
               <button
                 type="button"
                 onClick={() => setRecordToDelete(null)}
-                className="flex-1 py-2.5 rounded-xl bg-[#eee7da] text-[#554a3d] text-xs font-semibold hover:bg-[#e4dcce] transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-[#eee7da] text-[#554a3d] text-base font-semibold hover:bg-[#e4dcce] transition-colors"
               >
                 취소
               </button>
               <button
                 type="button"
                 onClick={confirmDelete}
-                className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-bold hover:bg-rose-700 shadow-xs transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white text-base font-bold hover:bg-rose-700 shadow-xs transition-colors"
               >
                 삭제하기
               </button>
