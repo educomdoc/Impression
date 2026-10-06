@@ -10,6 +10,7 @@ import {
   Cloud
 } from 'lucide-react';
 import { ViewTab, Impression } from './types';
+import torayLogo from './assets/images/도레이로고_고화질.png';
 import {
   subscribeToImpressions,
   addImpression,
@@ -138,15 +139,14 @@ export default function App() {
             </div>
           </div>
 
-          {/* Quick Write Impression Action */}
-          <button
-            onClick={() => handleOpenWriteModal()}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#3b4c38] text-white hover:bg-[#2d3a2b] shadow-2xs transition-all active:scale-95"
-            title="새 소감 남기기"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>소감 쓰기</span>
-          </button>
+         {/* 도레이첨단소재 로고 (클릭 시 동작 없음) */}
+<div className="flex items-center">
+  <img
+    src={torayLogo}
+    alt="도레이첨단소재"
+    className="h-7 w-auto object-contain select-none pointer-events-none"
+  />
+</div>
         </div>
       </header>
 
