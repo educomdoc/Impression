@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {
   BookOpen,
   Sparkles,
+  Compass,
   Plus,
   Heart,
+  Wind,
   Layers,
   User,
   Home,
@@ -19,6 +21,8 @@ import {
   deleteImpression
 } from './utils/storage';
 import { CommunityWallView } from './components/CommunityWallView';
+import { MeditationTimer } from './components/MeditationTimer';
+import { SpaceExplorerView } from './components/SpaceExplorerView';
 import { MyJournalView } from './components/MyJournalView';
 import { ImpressionFormModal } from './components/ImpressionFormModal';
 import { ImpressionDetailModal } from './components/ImpressionDetailModal';
@@ -128,18 +132,18 @@ export default function App() {
                 <span className="font-serif-kr font-bold text-base text-[#242c20] leading-none tracking-tight">
                   사유원
                 </span>
-                <span className="inline-flex items-center gap-0.5 text-[15px] px-1.5 py-0.5 rounded-full bg-emerald-100/90 text-emerald-800 font-medium">
+                <span className="inline-flex items-center gap-0.5 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-100/90 text-emerald-800 font-medium">
                   <Cloud className="w-2.5 h-2.5 text-emerald-600" />
                   Firebase
                 </span>
               </div>
-              <div className="text-[18px] text-[#786c5c] font-sans-kr leading-tight mt-0.5">
+              <div className="text-[10px] text-[#786c5c] font-sans-kr leading-tight mt-0.5">
                 숲체험 &amp; 명상 소감록
               </div>
             </div>
           </div>
 
-         {/* 도레이첨단소재 로고 (클릭 시 동작 없음) */}
+          {/* 도레이첨단소재 로고 (클릭 시 동작 없음) */}
 <div className="flex items-center">
   <img
     src={torayLogo}
@@ -162,7 +166,22 @@ export default function App() {
           />
         )}
 
-     
+        {activeTab === 'meditation' && (
+          <MeditationTimer
+            onCompleteToJournal={(mins, spaceId) => {
+              handleOpenWriteModal(spaceId, mins);
+            }}
+          />
+        )}
+
+        {activeTab === 'spaces' && (
+          <SpaceExplorerView
+            onSelectSpaceForImpression={(spaceId) => handleOpenWriteModal(spaceId)}
+            onSelectSpaceForMeditation={(spaceId) => {
+              setActiveTab('meditation');
+            }}
+          />
+        )}
 
         {activeTab === 'journal' && (
           <MyJournalView
@@ -187,7 +206,18 @@ export default function App() {
             }`}
           >
             <Home className="w-5 h-5" />
-            <span className="text-[18px]">사유 방명록</span>
+            <span className="text-[10px]">사유 방명록</span>
+          </button>
+
+          {/* Tab 2: Meditation */}
+          <button
+            onClick={() => setActiveTab('meditation')}
+            className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all ${
+              activeTab === 'meditation' ? 'text-[#3b4c38] font-bold' : 'text-[#7e7362] hover:text-[#332c22]'
+            }`}
+          >
+            <Wind className="w-5 h-5" />
+            <span className="text-[10px]">숲 명상</span>
           </button>
 
           {/* Central Action: Write Impression Floating Button */}
@@ -198,7 +228,18 @@ export default function App() {
             <div className="w-13 h-13 rounded-full bg-[#3b4c38] text-white flex items-center justify-center shadow-lg group-hover:bg-[#2d3a2b] transition-transform active:scale-95 group-hover:scale-105 border-4 border-[#fbf9f4]">
               <Plus className="w-6 h-6" />
             </div>
-            <span className="text-[18px] font-bold text-[#3b4c38] mt-0.5">소감 쓰기</span>
+            <span className="text-[10px] font-bold text-[#3b4c38] mt-0.5">소감 쓰기</span>
+          </button>
+
+          {/* Tab 4: Spaces */}
+          <button
+            onClick={() => setActiveTab('spaces')}
+            className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all ${
+              activeTab === 'spaces' ? 'text-[#3b4c38] font-bold' : 'text-[#7e7362] hover:text-[#332c22]'
+            }`}
+          >
+            <Compass className="w-5 h-5" />
+            <span className="text-[10px]">공간 탐색</span>
           </button>
 
           {/* Tab 5: My Drawer */}
@@ -209,7 +250,7 @@ export default function App() {
             }`}
           >
             <BookOpen className="w-5 h-5" />
-            <span className="text-[18px]">나의 서랍</span>
+            <span className="text-[10px]">나의 서랍</span>
           </button>
         </div>
       </nav>
