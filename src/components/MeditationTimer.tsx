@@ -221,8 +221,8 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
                   meditationAudio.setCustomFile(file);
                 }
               }}
-            />
-            </button>
+            /> </button>
+            );
           </div>
         </div>
 
