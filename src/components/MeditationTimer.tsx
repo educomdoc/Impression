@@ -21,7 +21,7 @@ interface MeditationTimerProps {
 }
 
 export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJournal }) => {
-  const [selectedMinutes, setSelectedMinutes] = useState<number>(5);
+  const [selectedMinutes, setSelectedMinutes] = useState<number>(1);
   const [timeLeft, setTimeLeft] = useState<number>(5 * 60);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
@@ -248,7 +248,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
       {/* Space Selector Card */}
       <div className="mb-5 p-3.5 rounded-2xl bg-[#eee8db]/80 border border-[#ded5c4] shadow-xs">
-        <div className="flex items-center justify-between text-xs text-[#6b6151] mb-2 font-medium">
+        <div className="flex items-center justify-between text-base text-[#6b6151] mb-2 font-medium">
           <span>명상할 사유원의 공간 선택</span>
           <span className="text-[#3b4c38]">{selectedSpace.tag}</span>
         </div>
@@ -259,7 +259,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
               <button
                 key={space.id}
                 onClick={() => setSelectedSpace(space)}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs transition-all flex items-center gap-1.5 ${
+                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-base transition-all flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-[#3b4b39] text-white font-medium shadow-sm'
                     : 'bg-[#faf7f0] text-[#53493e] hover:bg-white border border-[#dfd7c8]'
@@ -326,7 +326,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             <button
               key={mins}
               onClick={() => handleSelectMinutes(mins)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-base font-medium transition-all ${
                 selectedMinutes === mins
                   ? 'bg-[#3b4b39] text-white shadow-xs'
                   : 'bg-[#eee7da] text-[#554b3e] hover:bg-[#e2dacb]'
@@ -374,12 +374,12 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             <CheckCircle2 className="w-4 h-4" />
             <span>{selectedMinutes}분간의 평온한 사유가 끝났습니다</span>
           </div>
-          <p className="text-xs text-[#4b5e49] font-serif-kr mb-3">
+          <p className="text-base text-[#4b5e49] font-serif-kr mb-3">
             음악이 멈추었습니다. 맑게 갠 마음에 남은 생각과 감정을 지금 바로 소감록에 적어보세요.
           </p>
           <button
             onClick={() => onCompleteToJournal(selectedMinutes, selectedSpace.id)}
-            className="w-full py-2.5 px-4 rounded-xl bg-[#3b4c38] text-white font-medium text-xs flex items-center justify-center gap-2 shadow-xs hover:bg-[#2f3f2d] transition-all"
+            className="w-full py-2.5 px-4 rounded-xl bg-[#3b4c38] text-white font-medium text-base flex items-center justify-center gap-2 shadow-xs hover:bg-[#2f3f2d] transition-all"
           >
             <span>이 여운으로 소감 남기기</span>
             <ArrowRight className="w-3.5 h-3.5" />
