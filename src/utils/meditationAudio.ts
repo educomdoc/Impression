@@ -1,4 +1,4 @@
-import meditationBg: from '../assets/images/명상.mp3';
+import meditationBg from '../assets/images/명상.mp3';
 
 export interface MeditationAudioState {
   isPlaying: boolean;
