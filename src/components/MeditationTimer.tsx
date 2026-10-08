@@ -165,6 +165,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
         <p className="text-xs text-[#6e6456] mt-1 font-sans-kr">
           사유원의 공간에 마음을 두고, 호흡의 파동과 음악에 집중해 봅니다.
         </p>
+          
       </div>
 
       {/* Music Status Bar for '숲길 산책.mp3' */}
@@ -196,55 +197,54 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
           </div>
 
           <div className="flex items-center gap-1.5">
-            {/* Mute button */}
-            <button
-              onClick={() => meditationAudio.toggleMute()}
-              className="p-1.5 rounded-lg hover:bg-black/5 text-[#5e5447] transition-colors"
-              title={audioState.isMuted ? '음소거 해제' : '음소거'}
-            >
-              {audioState.isMuted ? (
-                <VolumeX className="w-4 h-4 text-stone-400" />
-              ) : (
-                <Volume2 className="w-4 h-4 text-[#3b4c38]" />
-              )}
-            </button>
+          {/* Mute button */}
+          <button
+            onClick={() => meditationAudio.toggleMute()}
+            className="p-1.5 rounded-lg hover:bg-black/5 text-[#5e5447] transition-colors"
+            title={audioState.isMuted ? '음소거 해제' : '음소거'}
+          >
+            {audioState.isMuted ? (
+              <VolumeX className="w-4 h-4 text-stone-400" />
+            ) : (
+              <Volume2 className="w-4 h-4 text-[#3b4c38]" />
+            )}
+          </button>
 
-            {/* Custom file change */}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="audio/*"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  meditationAudio.setCustomFile(file);
-                }
-              }}
-            /> </button>
-            );
-          </div>
+          {/* Custom file change */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="audio/*"
+            className="hidden"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                meditationAudio.setCustomFile(file);
+              }
+            }}
+          />
         </div>
+      </div>
 
         {/* Volume slider */}
-        {audioState.isPlaying && (
-          <div className="flex items-center gap-2 pt-2 mt-2 border-t border-[#ded5c4]">
-            <span className="text-[16px] text-[#6d6151] font-medium">음량</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.05"
-              value={audioState.isMuted ? 0 : audioState.volume}
-              onChange={(e) => meditationAudio.setVolume(parseFloat(e.target.value))}
-              className="w-full accent-[#3b4c38] h-1.5 bg-[#dcd2c1] rounded-lg cursor-pointer"
-            />
-            <span className="text-[16px] text-[#6d6151] font-mono w-7 text-right">
-              {Math.round((audioState.isMuted ? 0 : audioState.volume) * 100)}%
-            </span>
-          </div>
-        )}
-      </div>
+      {audioState.isPlaying && (
+        <div className="flex items-center gap-2 pt-2 mt-2 border-t border-[#ded5c4]">
+          <span className="text-[16px] text-[#6d6151] font-medium">음량</span>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={audioState.isMuted ? 0 : audioState.volume}
+            onChange={(e) => meditationAudio.setVolume(parseFloat(e.target.value))}
+            className="w-full accent-[#3b4c38] h-1.5 bg-[#dcd2c1] rounded-lg cursor-pointer"
+          />
+          <span className="text-[16px] text-[#6d6151] font-mono w-7 text-right">
+            {Math.round((audioState.isMuted ? 0 : audioState.volume) * 100)}%
+          </span>
+        </div>
+      )}
+    </div>
 
       {/* Space Selector Card */}
       <div className="mb-5 p-3.5 rounded-2xl bg-[#eee8db]/80 border border-[#ded5c4] shadow-xs">
