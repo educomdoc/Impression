@@ -10,7 +10,6 @@ import {
   Volume2,
   VolumeX,
   Repeat,
-  Upload
 } from 'lucide-react';
 import { SAYUWON_SPACES } from '../data/sayuwonSpaces';
 import { ForestSpace } from '../types';
@@ -29,7 +28,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
   const [audioState, setAudioState] = useState<MeditationAudioState>(meditationAudio.getState());
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   // 4-phase box breathing cycle: 들숨(4s) -> 머뭄(4s) -> 날숨(4s) -> 비움(2s)
   const [breathPhase, setBreathPhase] = useState<'inhale' | 'hold' | 'exhale' | 'rest'>('inhale');
   const [breathText, setBreathText] = useState('천천히 들이마십니다 (들숨)');
@@ -70,7 +69,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
     const loop = (now: number) => {
       const elapsed = (now - startTime) % cycleDuration;
-      
+
       if (elapsed < 4000) {
         setBreathPhase('inhale');
         setBreathText('맑은 숲 공기를 깊게 들이쉽니다 (들숨)');
@@ -119,7 +118,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
     };
   }, [isActive, timeLeft]);
 
-  // Start Meditation & play '숲길 산책.mp3' in continuous loop
+  // Start Meditation & play audio in continuous loop
   const handleStart = () => {
     setIsActive(true);
     setIsCompleted(false);
@@ -165,10 +164,9 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
         <p className="text-xs text-[#6e6456] mt-1 font-sans-kr">
           사유원의 공간에 마음을 두고, 호흡의 파동과 음악에 집중해 봅니다.
         </p>
-          
       </div>
 
-      {/* Music Status Bar for '숲길 산책.mp3' */}
+      {/* Music Status Bar */}
       <div className="mb-4 p-3 rounded-2xl bg-[#eee7db]/90 border border-[#ded5c4] shadow-2xs">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -183,7 +181,9 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-[#273223]">숲길 산책.mp3</span>
+                <span className="text-xs font-bold text-[#273223]">
+                  {audioState.customFile ? audioState.customFile.name : '명상.mp3'}
+                </span>
                 <span className="text-[16px] px-1.5 py-0.5 rounded-full bg-[#dfd6c5] text-[#564a3a] font-medium flex items-center gap-0.5">
                   <Repeat className="w-2.5 h-2.5 text-[#3b4c38]" /> 자동 반복 루프
                 </span>
@@ -197,54 +197,54 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
           </div>
 
           <div className="flex items-center gap-1.5">
-          {/* Mute button */}
-          <button
-            onClick={() => meditationAudio.toggleMute()}
-            className="p-1.5 rounded-lg hover:bg-black/5 text-[#5e5447] transition-colors"
-            title={audioState.isMuted ? '음소거 해제' : '음소거'}
-          >
-            {audioState.isMuted ? (
-              <VolumeX className="w-4 h-4 text-stone-400" />
-            ) : (
-              <Volume2 className="w-4 h-4 text-[#3b4c38]" />
-            )}
-          </button>
+            {/* Mute button */}
+            <button
+              onClick={() => meditationAudio.toggleMute()}
+              className="p-1.5 rounded-lg hover:bg-black/5 text-[#5e5447] transition-colors"
+              title={audioState.isMuted ? '음소거 해제' : '음소거'}
+            >
+              {audioState.isMuted ? (
+                <VolumeX className="w-4 h-4 text-stone-400" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-[#3b4c38]" />
+              )}
+            </button>
 
-          {/* Custom file change */}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="audio/*"
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                meditationAudio.setCustomFile(file);
-              }
-            }}
-          />
+            {/* Custom file change */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  meditationAudio.setCustomFile(file);
+                }
+              }}
+            />
+          </div>
         </div>
-      </div>
 
         {/* Volume slider */}
-      {audioState.isPlaying && (
-        <div className="flex items-center gap-2 pt-2 mt-2 border-t border-[#ded5c4]">
-          <span className="text-[16px] text-[#6d6151] font-medium">음량</span>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.05"
-            value={audioState.isMuted ? 0 : audioState.volume}
-            onChange={(e) => meditationAudio.setVolume(parseFloat(e.target.value))}
-            className="w-full accent-[#3b4c38] h-1.5 bg-[#dcd2c1] rounded-lg cursor-pointer"
-          />
-          <span className="text-[16px] text-[#6d6151] font-mono w-7 text-right">
-            {Math.round((audioState.isMuted ? 0 : audioState.volume) * 100)}%
-          </span>
-        </div>
-      )}
-    </div>
+        {audioState.isPlaying && (
+          <div className="flex items-center gap-2 pt-2 mt-2 border-t border-[#ded5c4]">
+            <span className="text-[16px] text-[#6d6151] font-medium">음량</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={audioState.isMuted ? 0 : audioState.volume}
+              onChange={(e) => meditationAudio.setVolume(parseFloat(e.target.value))}
+              className="w-full accent-[#3b4c38] h-1.5 bg-[#dcd2c1] rounded-lg cursor-pointer"
+            />
+            <span className="text-[16px] text-[#6d6151] font-mono w-7 text-right">
+              {Math.round((audioState.isMuted ? 0 : audioState.volume) * 100)}%
+            </span>
+          </div>
+        )}
+      </div>
 
       {/* Space Selector Card */}
       <div className="mb-5 p-3.5 rounded-2xl bg-[#eee8db]/80 border border-[#ded5c4] shadow-xs">
@@ -277,9 +277,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
       {/* Breathing Visualizer Center */}
       <div className="relative flex flex-col items-center justify-center my-6">
-        {/* Pulsing Breathing Ring */}
         <div className="relative w-64 h-64 flex items-center justify-center">
-          {/* Subtle Outer Glow Wave */}
           <div
             className="absolute rounded-full transition-transform duration-700 ease-out bg-radial from-[#8da887]/30 to-transparent"
             style={{
@@ -290,7 +288,6 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             }}
           />
 
-          {/* Middle Ring */}
           <div
             className="absolute rounded-full border-2 border-[#546b51]/30 transition-transform duration-700 ease-out"
             style={{
@@ -300,7 +297,6 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             }}
           />
 
-          {/* Central Sphere */}
           <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#455743] via-[#354533] to-[#253223] text-white flex flex-col items-center justify-center shadow-xl border-4 border-[#e9e3d5]/40 z-10 px-4 text-center">
             <span className="text-3xl font-bold font-mono tracking-wider text-[#e8f1e5]">
               {formatTime(timeLeft)}
@@ -311,7 +307,6 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
           </div>
         </div>
 
-        {/* Breathing Guide Text */}
         <div className="mt-4 text-center px-4">
           <p className="text-sm font-medium text-[#3b4c38] font-serif-kr min-h-[28px] transition-all">
             {breathText}
@@ -319,7 +314,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
         </div>
       </div>
 
-      {/* Duration Selector (Only active when stopped) */}
+      {/* Duration Selector */}
       {!isActive && !isCompleted && (
         <div className="flex justify-center gap-2 mb-6">
           {[3].map((mins) => (
