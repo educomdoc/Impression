@@ -297,7 +297,6 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             }}
           />
 
-         // ✅ 수정 후 (<button>으로 교체 및 onClick 트리거 연결):
 {/* Central Sphere as Interactive Trigger Button */}
 <button
   type="button"
