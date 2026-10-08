@@ -16,12 +16,12 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
     <div className="max-w-md mx-auto px-4 py-4 pb-24 space-y-6">
       {/* Introduction Banner */}
       <div className="text-center">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
           <Compass className="w-3.5 h-3.5 text-[#3b4c38]" />
           사유원 (思惟園) 공간 안내
         </span>
         <h2 className="text-2xl font-bold font-serif-kr text-[#283226]">침묵과 사색의 영토</h2>
-        <p className="text-xs text-[#6e6456] mt-1.5 font-serif-kr leading-relaxed">
+        <p className="text-base text-[#6e6456] mt-1.5 font-serif-kr leading-relaxed">
           팔공산 자락, 거장 건축가들과 자연이 빚어낸 8개의 성스러운 사유처를 둘러보고 마음에 와닿는 자리에서 소감을 남겨보세요.
         </p>
       </div>
@@ -49,7 +49,7 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
                     {space.tag}
                   </span>
                 </div>
-                <div className="text-xs text-white/85 font-serif-kr mt-0.5">
+                <div className="text-base text-white/85 font-serif-kr mt-0.5">
                   {space.subtitle}
                 </div>
               </div>
@@ -57,12 +57,12 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
 
             {/* Description & Contemplation Advice */}
             <div className="p-4 space-y-3">
-              <p className="text-xs text-[#52483a] font-serif-kr leading-relaxed">
+              <p className="text-base text-[#52483a] font-serif-kr leading-relaxed">
                 {space.description}
               </p>
 
               {/* Architectural Quote */}
-              <div className="p-3 rounded-2xl bg-[#f3ede1] border border-[#e5dcce] text-xs font-serif-kr text-[#3c4a39] italic">
+              <div className="p-3 rounded-2xl bg-[#f3ede1] border border-[#e5dcce] text-base font-serif-kr text-[#3c4a39] italic">
                 {space.quote}
               </div>
 
@@ -78,7 +78,7 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
               <div className="flex gap-2 pt-1 border-t border-[#ede5d8]">
                 <button
                   onClick={() => onSelectSpaceForMeditation(space.id)}
-                  className="flex-1 py-2 px-3 rounded-xl bg-[#eee7db] text-[#4d4234] text-xs font-semibold hover:bg-[#e2dacb] transition-all flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2 px-3 rounded-xl bg-[#eee7db] text-[#4d4234] text-base font-semibold hover:bg-[#e2dacb] transition-all flex items-center justify-center gap-1.5"
                 >
                   <Wind className="w-3.5 h-3.5" />
                   <span>여기서 명상</span>
@@ -86,7 +86,7 @@ export const SpaceExplorerView: React.FC<SpaceExplorerViewProps> = ({
 
                 <button
                   onClick={() => onSelectSpaceForImpression(space.id)}
-                  className="flex-1 py-2 px-3 rounded-xl bg-[#3b4c38] text-white text-xs font-semibold hover:bg-[#303f2e] transition-all flex items-center justify-center gap-1.5 shadow-xs"
+                  className="flex-1 py-2 px-3 rounded-xl bg-[#3b4c38] text-white text-base font-semibold hover:bg-[#303f2e] transition-all flex items-center justify-center gap-1.5 shadow-xs"
                 >
                   <span>소감 기록하기</span>
                   <ArrowRight className="w-3.5 h-3.5" />
