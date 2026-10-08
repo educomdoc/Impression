@@ -156,7 +156,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             );
           })}
         </div>
-        <p className="text-[11px] text-[#6d7968] mt-2 font-serif-kr italic">
+        <p className="text-[18px] text-[#6d7968] mt-2 font-serif-kr italic">
           💡 {selectedSpace.meditationTip}
         </p>
       </div>
@@ -191,7 +191,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             <span className="text-3xl font-bold font-mono tracking-wider text-[#e8f1e5]">
               {formatTime(timeLeft)}
             </span>
-            <span className="text-[11px] text-[#b8cdb5] mt-1 font-serif-kr">
+            <span className="text-[18px] text-[#b8cdb5] mt-1 font-serif-kr">
               {isActive ? breathPhase.toUpperCase() : '준비'}
             </span>
           </div>
@@ -199,7 +199,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
         {/* Breathing Guide Text */}
         <div className="mt-4 text-center px-4">
-          <p className="text-sm font-medium text-[#3b4c38] font-serif-kr min-h-[22px] transition-all">
+          <p className="text-sm font-medium text-[#3b4c38] font-serif-kr min-h-[28px] transition-all">
             {breathText}
           </p>
         </div>
