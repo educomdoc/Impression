@@ -156,12 +156,12 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
     <div className="max-w-md mx-auto px-4 py-4 pb-24">
       {/* Title Header */}
       <div className="text-center mb-4">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
           <Sparkles className="w-3.5 h-3.5 text-[#8c673d]" />
           사유원 숲의 고요
         </span>
         <h2 className="text-2xl font-bold font-serif-kr text-[#283226]">숲길 명상실</h2>
-        <p className="text-xs text-[#6e6456] mt-1 font-sans-kr">
+        <p className="text-base text-[#6e6456] mt-1 font-sans-kr">
           사유원의 공간에 마음을 두고, 호흡의 파동과 음악에 집중해 봅니다.
         </p>
       </div>
@@ -181,7 +181,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="text-xs font-bold text-[#273223]">
+                <span className="text-base font-bold text-[#273223]">
                   {audioState.customFile ? audioState.customFile.name : '명상.mp3'}
                 </span>
                 <span className="text-[16px] px-1.5 py-0.5 rounded-full bg-[#dfd6c5] text-[#564a3a] font-medium flex items-center gap-0.5">
@@ -307,11 +307,11 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
   <span className="text-3xl font-bold font-mono tracking-wider text-[#e8f1e5] group-hover:text-emerald-200 transition-colors">
     {formatTime(timeLeft)}
   </span>
-  <span className="text-[11px] text-[#b8cdb5] mt-1 font-serif-kr">
+  <span className="text-[18px] text-[#b8cdb5] mt-1 font-serif-kr">
     {isActive ? breathPhase.toUpperCase() : '명상 시작 (터치)'}
   </span>
   {!isActive && (
-    <span className="text-[10px] text-[#a9c9a6] mt-1 font-serif-kr flex items-center gap-1 opacity-80 group-hover:opacity-100">
+    <span className="text-[16px] text-[#a9c9a6] mt-1 font-serif-kr flex items-center gap-1 opacity-80 group-hover:opacity-100">
       ▶ 터치 시 재생
     </span>
   )}
