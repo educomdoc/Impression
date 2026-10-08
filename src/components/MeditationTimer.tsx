@@ -20,8 +20,8 @@ interface MeditationTimerProps {
 }
 
 export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJournal }) => {
-  const [selectedMinutes, setSelectedMinutes] = useState<number>(1);
-  const [timeLeft, setTimeLeft] = useState<number>(5 * 60);
+  const [selectedMinutes, setSelectedMinutes] = useState<number>(3);
+  const [timeLeft, setTimeLeft] = useState<number>(3 * 60);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [selectedSpace, setSelectedSpace] = useState<ForestSpace>(SAYUWON_SPACES[0]);
@@ -297,14 +297,26 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             }}
           />
 
-          <div className="w-48 h-48 rounded-full bg-gradient-to-br from-[#455743] via-[#354533] to-[#253223] text-white flex flex-col items-center justify-center shadow-xl border-4 border-[#e9e3d5]/40 z-10 px-4 text-center">
-            <span className="text-3xl font-bold font-mono tracking-wider text-[#e8f1e5]">
-              {formatTime(timeLeft)}
-            </span>
-            <span className="text-[18px] text-[#b8cdb5] mt-1 font-serif-kr">
-              {isActive ? breathPhase.toUpperCase() : '준비'}
-            </span>
-          </div>
+         // ✅ 수정 후 (<button>으로 교체 및 onClick 트리거 연결):
+{/* Central Sphere as Interactive Trigger Button */}
+<button
+  type="button"
+  onClick={isActive ? handlePause : handleStart}
+  className="w-48 h-48 rounded-full bg-gradient-to-br from-[#455743] via-[#354533] to-[#253223] text-white flex flex-col items-center justify-center shadow-xl border-4 border-[#e9e3d5]/40 z-10 px-4 text-center cursor-pointer hover:scale-105 active:scale-95 transition-all group"
+  title={isActive ? '터치하여 일시정지' : '터치하여 3분 명상 & 음악 시작'}
+>
+  <span className="text-3xl font-bold font-mono tracking-wider text-[#e8f1e5] group-hover:text-emerald-200 transition-colors">
+    {formatTime(timeLeft)}
+  </span>
+  <span className="text-[11px] text-[#b8cdb5] mt-1 font-serif-kr">
+    {isActive ? breathPhase.toUpperCase() : '명상 시작 (터치)'}
+  </span>
+  {!isActive && (
+    <span className="text-[10px] text-[#a9c9a6] mt-1 font-serif-kr flex items-center gap-1 opacity-80 group-hover:opacity-100">
+      ▶ 터치 시 재생
+    </span>
+  )}
+</button>
         </div>
 
         <div className="mt-4 text-center px-4">
@@ -313,25 +325,6 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
           </p>
         </div>
       </div>
-
-      {/* Duration Selector */}
-      {!isActive && !isCompleted && (
-        <div className="flex justify-center gap-2 mb-6">
-          {[3].map((mins) => (
-            <button
-              key={mins}
-              onClick={() => handleSelectMinutes(mins)}
-              className={`px-3.5 py-1.5 rounded-full text-base font-medium transition-all ${
-                selectedMinutes === mins
-                  ? 'bg-[#3b4b39] text-white shadow-xs'
-                  : 'bg-[#eee7da] text-[#554b3e] hover:bg-[#e2dacb]'
-              }`}
-            >
-              {mins}분
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Main Action Buttons */}
       <div className="flex items-center justify-center gap-4 mb-6">
