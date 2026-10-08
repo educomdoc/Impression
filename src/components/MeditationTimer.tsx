@@ -1,7 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, RotateCcw, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  Music,
+  Volume2,
+  VolumeX,
+  Repeat,
+  Upload
+} from 'lucide-react';
 import { SAYUWON_SPACES } from '../data/sayuwonSpaces';
 import { ForestSpace } from '../types';
+import { meditationAudio, MeditationAudioState } from '../utils/meditationAudio';
 
 interface MeditationTimerProps {
   onCompleteToJournal: (minutes: number, spaceId: string) => void;
@@ -12,7 +25,10 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
   const [timeLeft, setTimeLeft] = useState<number>(5 * 60);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
-  const [selectedSpace, setSelectedSpace] = useState<ForestSpace>(SAYUWON_SPACES[0]); // default to 명정
+  const [selectedSpace, setSelectedSpace] = useState<ForestSpace>(SAYUWON_SPACES[0]);
+  const [audioState, setAudioState] = useState<MeditationAudioState>(meditationAudio.getState());
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   // 4-phase box breathing cycle: 들숨(4s) -> 머뭄(4s) -> 날숨(4s) -> 비움(2s)
   const [breathPhase, setBreathPhase] = useState<'inhale' | 'hold' | 'exhale' | 'rest'>('inhale');
@@ -21,6 +37,17 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
 
   const timerRef = useRef<number | null>(null);
   const breathAnimRef = useRef<number | null>(null);
+
+  // Subscribe to audio state & cleanup on unmount
+  useEffect(() => {
+    const unsubscribe = meditationAudio.subscribe((state) => {
+      setAudioState(state);
+    });
+    return () => {
+      unsubscribe();
+      meditationAudio.stop();
+    };
+  }, []);
 
   // Set initial time when minutes change
   const handleSelectMinutes = (mins: number) => {
@@ -92,24 +119,32 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
     };
   }, [isActive, timeLeft]);
 
+  // Start Meditation & play '숲길 산책.mp3' in continuous loop
   const handleStart = () => {
     setIsActive(true);
     setIsCompleted(false);
+    meditationAudio.play();
   };
 
+  // Pause meditation & pause music
   const handlePause = () => {
     setIsActive(false);
+    meditationAudio.pause();
   };
 
+  // Reset meditation & stop music
   const handleReset = () => {
     setIsActive(false);
     setTimeLeft(selectedMinutes * 60);
     setIsCompleted(false);
+    meditationAudio.stop();
   };
 
+  // Complete chosen duration & stop music
   const handleComplete = () => {
     setIsActive(false);
     setIsCompleted(true);
+    meditationAudio.stop();
   };
 
   const formatTime = (secs: number) => {
@@ -121,15 +156,94 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
   return (
     <div className="max-w-md mx-auto px-4 py-4 pb-24">
       {/* Title Header */}
-      <div className="text-center mb-5">
+      <div className="text-center mb-4">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ebe4d5] text-[#554a3e] mb-2">
           <Sparkles className="w-3.5 h-3.5 text-[#8c673d]" />
           사유원 숲의 고요
         </span>
         <h2 className="text-2xl font-bold font-serif-kr text-[#283226]">숲길 명상실</h2>
         <p className="text-xs text-[#6e6456] mt-1 font-sans-kr">
-          사유원의 공간에 마음을 두고, 호흡의 파동에 집중해 봅니다.
+          사유원의 공간에 마음을 두고, 호흡의 파동과 음악에 집중해 봅니다.
         </p>
+      </div>
+
+      {/* Music Status Bar for '숲길 산책.mp3' */}
+      <div className="mb-4 p-3 rounded-2xl bg-[#eee7db]/90 border border-[#ded5c4] shadow-2xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                audioState.isPlaying
+                  ? 'bg-[#3b4c38] text-white shadow-xs scale-105'
+                  : 'bg-[#ded4c3] text-[#554b3e]'
+              }`}
+            >
+              <Music className={`w-4 h-4 ${audioState.isPlaying ? 'animate-bounce' : ''}`} />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-[#273223]">숲길 산책.mp3</span>
+                <span className="text-[16px] px-1.5 py-0.5 rounded-full bg-[#dfd6c5] text-[#564a3a] font-medium flex items-center gap-0.5">
+                  <Repeat className="w-2.5 h-2.5 text-[#3b4c38]" /> 자동 반복 루프
+                </span>
+              </div>
+              <p className="text-[16px] text-[#716554] mt-0.5">
+                {audioState.isPlaying
+                  ? '🎵 잔잔한 선율이 반복 재생되고 있습니다'
+                  : '명상 시작 버튼을 누르면 노래가 함께 흘러나옵니다'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            {/* Mute button */}
+            <button
+              onClick={() => meditationAudio.toggleMute()}
+              className="p-1.5 rounded-lg hover:bg-black/5 text-[#5e5447] transition-colors"
+              title={audioState.isMuted ? '음소거 해제' : '음소거'}
+            >
+              {audioState.isMuted ? (
+                <VolumeX className="w-4 h-4 text-stone-400" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-[#3b4c38]" />
+              )}
+            </button>
+
+            {/* Custom file change */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  meditationAudio.setCustomFile(file);
+                }
+              }}
+            />
+            </button>
+          </div>
+        </div>
+
+        {/* Volume slider */}
+        {audioState.isPlaying && (
+          <div className="flex items-center gap-2 pt-2 mt-2 border-t border-[#ded5c4]">
+            <span className="text-[16px] text-[#6d6151] font-medium">음량</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={audioState.isMuted ? 0 : audioState.volume}
+              onChange={(e) => meditationAudio.setVolume(parseFloat(e.target.value))}
+              className="w-full accent-[#3b4c38] h-1.5 bg-[#dcd2c1] rounded-lg cursor-pointer"
+            />
+            <span className="text-[16px] text-[#6d6151] font-mono w-7 text-right">
+              {Math.round((audioState.isMuted ? 0 : audioState.volume) * 100)}%
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Space Selector Card */}
@@ -208,7 +322,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
       {/* Duration Selector (Only active when stopped) */}
       {!isActive && !isCompleted && (
         <div className="flex justify-center gap-2 mb-6">
-          {[3, 5, 10, 15, 20].map((mins) => (
+          {[3].map((mins) => (
             <button
               key={mins}
               onClick={() => handleSelectMinutes(mins)}
@@ -261,7 +375,7 @@ export const MeditationTimer: React.FC<MeditationTimerProps> = ({ onCompleteToJo
             <span>{selectedMinutes}분간의 평온한 사유가 끝났습니다</span>
           </div>
           <p className="text-xs text-[#4b5e49] font-serif-kr mb-3">
-            맑게 갠 마음에 남은 생각과 감정을 지금 바로 소감록에 적어보세요.
+            음악이 멈추었습니다. 맑게 갠 마음에 남은 생각과 감정을 지금 바로 소감록에 적어보세요.
           </p>
           <button
             onClick={() => onCompleteToJournal(selectedMinutes, selectedSpace.id)}
