@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   Sparkles,
   Search,
@@ -7,11 +7,16 @@ import {
   Flame,
   Heart,
   Compass,
-  Wind
+  Wind,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { Impression } from '../types';
 import { SAYUWON_SPACES } from '../data/sayuwonSpaces';
 import { ImpressionCard } from './ImpressionCard';
+import tourVideo from '../assets/images/둘러보기.mp4';
 
 interface CommunityWallViewProps {
   impressions: Impression[];
@@ -28,6 +33,40 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
   onOpenPostcard,
   onOpenWriteModal
 }) => {
+  // --- 💡 [비디오 제어 상태 및 ref 추가] ---
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false); // 소리 활성화 여부
+
+  // 💡 [핵심] 다른 탭(숲 명상, 공간 탐색, 나의 서랍 등)을 열었을 때 자동으로 정지
+  useEffect(() => {
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
+  // 화면을 누르면 재생 / 일시정지 토글
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  // 음소거 토글 (선택 사항)
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSpaceFilter, setSelectedSpaceFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'latest' | 'popular'>('latest');
@@ -66,13 +105,66 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
 
   return (
     <div className="max-w-md mx-auto px-4 py-4 pb-24 space-y-5">
-      {/* Hero Welcome Banner */}
+     <div 
+        onClick={togglePlay}
+        className="relative rounded-3xl overflow-hidden shadow-lg bg-black cursor-pointer group select-none aspect-video border border-[#ded5c4]"
+        title="화면을 터치하면 영상과 소리가 재생/일시정지됩니다"
+      >
+        <video
+          ref={videoRef}
+          src={tourVideo}
+          loop
+          playsInline
+          muted={isMuted}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          className="w-full h-full object-cover"
+        />
+
+        {/* 상단 라벨 & 음소거 버튼 */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-20 pointer-events-none">
+          <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/50 text-white/90 backdrop-blur-md flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            사유원 둘러보기
+          </span>
+
+          <button
+            type="button"
+            onClick={toggleMute}
+            className="p-1.5 rounded-full bg-black/50 text-white hover:bg-black/70 backdrop-blur-md pointer-events-auto transition-transform active:scale-95"
+            title={isMuted ? "음소거 해제" : "음소거"}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          </button>
+        </div>
+
+        {/* 일시정지 상태일 때 중앙에 표시되는 재생 버튼 오버레이 */}
+        {!isPlaying && (
+          <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px] flex flex-col items-center justify-center gap-2 z-10 transition-opacity">
+            <div className="w-13 h-13 rounded-full bg-white/90 text-[#3b4c38] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <Play className="w-6 h-6 fill-current translate-x-0.5" />
+            </div>
+            <span className="text-xs font-serif-kr text-white/90 drop-shadow-md">
+              터치하여 영상 &amp; 소리 재생
+            </span>
+          </div>
+        )}
+
+        {/* 재생 중일 때 하단 힌트 (hover 시 나타남) */}
+        {isPlaying && (
+          <div className="absolute bottom-2.5 right-3 px-2 py-0.5 rounded-md bg-black/40 text-white/80 text-[10px] backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
+            터치하여 일시정지
+          </div>
+        )}
+      </div>
+
+      {/* 🌿 2. 기존 Hero Welcome Banner (비디오 아래로 배치) */}
       <div className="relative rounded-3xl p-5 overflow-hidden text-white shadow-md pine-gradient">
         {/* Subtle background glow */}
         <div className="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-emerald-600/20 blur-2xl pointer-events-none" />
 
         <div className="relative z-10 space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-base font-medium bg-white/15 text-[#e5f0e3] backdrop-blur-xs">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/15 text-[#e5f0e3] backdrop-blur-xs">
             <Wind className="w-3.5 h-3.5 text-emerald-300" />
             <span>사유원 숲체험 &amp; 명상 소감록</span>
           </div>
@@ -81,25 +173,26 @@ export const CommunityWallView: React.FC<CommunityWallViewProps> = ({
             숲에 머문 마음,<br />고요한 사유의 방명록
           </h2>
 
-          <p className="text-base text-[#c6d7c4] font-serif-kr leading-relaxed">
+          <p className="text-xs text-[#c6d7c4] font-serif-kr leading-relaxed">
             승효상, 알바로 시자의 건축과 300년 모과나무 숲길을 걸은 이들이 남긴 성찰과 온기의 기록입니다.
           </p>
 
           <div className="pt-2 flex items-center gap-2">
             <button
               onClick={onOpenWriteModal}
-              className="py-2.5 px-4 rounded-2xl bg-[#fdfbf7] text-[#242f22] text-base font-bold hover:bg-white inline-flex items-center gap-1.5 shadow-sm transition-transform active:scale-95"
+              className="py-2.5 px-4 rounded-2xl bg-[#fdfbf7] text-[#242f22] text-xs font-bold hover:bg-white inline-flex items-center gap-1.5 shadow-sm transition-transform active:scale-95"
             >
               <Plus className="w-4 h-4 text-[#3b4c38]" />
               <span>나도 소감 남기기</span>
             </button>
 
-            <span className="text-[20px] text-[#b8cdb6] pl-2 font-serif-kr">
+            <span className="text-[11px] text-[#b8cdb6] pl-2 font-serif-kr">
               총 {impressions.length}개의 사유
             </span>
           </div>
         </div>
       </div>
+
 
       {/* Search Input Bar */}
       <div className="relative">
